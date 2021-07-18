@@ -12,7 +12,11 @@ class NotificationSignal(desc.CommandLineNode):
 
     category = 'Utils'
     documentation = '''
-Send a notification to Signal when this gets called.
+Send a notification to Signal when the node is executed. It can be used multiple times in a pipeline to send updates on how the pipeline is progressing.
+
+This requires the installation of the signal-cli from https://github.com/AsamK/signal-cli
+
+signal-cli will also need to be linked to your account as new device.
 '''
 
     inputs = [
