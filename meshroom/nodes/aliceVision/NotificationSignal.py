@@ -1,16 +1,14 @@
 from __future__ import print_function
 
-__version__ = "1.2"
+__version__ = "0.1"
 
 from meshroom.core import desc
-import shutil
-import glob
+
 import os
-import json
 
 class NotificationSignal(desc.CommandLineNode):
 
-    commandLine = '/mnt/software/signal-cli-0.8.4.1/bin/signal-cli send {phonenumberValue} -m {messageValue}'
+    commandLine = '{signalPathValue} send {phonenumberValue} -m {messageValue}'
 
     category = 'Utils'
     documentation = '''
@@ -22,8 +20,16 @@ Send a notification to Signal when this gets called.
             name='trigger',
             label='Trigger',
             description='Trigger Input that causes notification to be sent',
-            value=None,
+            value="",
             uid=[0],
+        ),
+        desc.File(
+            name="signalPath",
+            label="Signal-cli Path",
+            description="Path to signal-cli",
+            value=os.environ.get('SIGNAL_CLI_PATH', "/mnt/software/signal-cli-0.8.4.1/bin/signal-cli"),
+            uid=[],
+            group=""
         ),
         desc.StringParam(
             name="phonenumber",
@@ -36,7 +42,7 @@ Send a notification to Signal when this gets called.
             name="message",
             label="Message",
             description="Message to Send",
-            value="Step has completed {Step}",
+            value="Step has completed",
             uid=[0],
         ),
         desc.ChoiceParam(
