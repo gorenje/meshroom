@@ -1,9 +1,8 @@
 from __future__ import print_function
 
-__version__ = "0.1"
+__version__ = "0.2"
 
 from meshroom.core import desc
-
 import os
 
 class NotificationSignal(desc.CommandLineNode):
@@ -27,27 +26,26 @@ signal-cli will also need to be linked to your account as new device.
             value="",
             uid=[0],
         ),
-        desc.File(
+        desc.StringParam(
             name="signalPath",
             label="Signal-cli Path",
             description="Path to signal-cli",
             value=os.environ.get('SIGNAL_CLI_PATH', "/mnt/software/signal-cli-0.8.4.1/bin/signal-cli"),
             uid=[],
-            group=""
         ),
         desc.StringParam(
             name="phonenumber",
             label="Phonenumber",
             description="Phone to whom the message should be sent",
             value="",
-            uid=[0],
+            uid=[],
         ),
         desc.StringParam(
             name="message",
             label="Message",
             description="Message to Send",
             value="Step has completed",
-            uid=[0],
+            uid=[],
         ),
         desc.ChoiceParam(
             name='verboseLevel',
